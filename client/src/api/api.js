@@ -1,7 +1,16 @@
 import axios from "axios";
 
+// const create = axios.create({
+//   baseURL: import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:3000/api",
+//   headers: {
+//     "Content-Type": "application/json",
+//     Accept: "application/json",
+//   },
+//   timeout: 30000,
+// });
+
 const create = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:3000/api",
+  baseURL: "/api",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -40,4 +49,4 @@ export const getEnergyLogDataValues = async (
   });
 
   return res.data;
-};  
+};

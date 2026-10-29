@@ -220,23 +220,23 @@ const DataTables = ({ tableData = [] }) => {
           <Table>
             <TableHeader>
               <TableRow className="border-white/[0.08] bg-white/[0.025] hover:bg-white/[0.025]">
-                <TableHead className="h-12 min-w-[190px] pl-4 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                <TableHead className="h-12 min-w-[140px] pl-4 text-xs font-semibold uppercase tracking-wider text-zinc-400">
                   Meter
                 </TableHead>
 
-                <TableHead className="h-12 min-w-[130px] text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                <TableHead className="h-12 min-w-[120px] text-xs font-semibold uppercase tracking-wider text-zinc-400">
                   Division
                 </TableHead>
 
-                <TableHead className="h-12 min-w-[140px] text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                <TableHead className="h-12 min-w-[120px] text-xs font-semibold uppercase tracking-wider text-zinc-400">
                   Department
                 </TableHead>
 
-                <TableHead className="h-12 min-w-[190px] text-right text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                <TableHead className="h-12 min-w-[170px] text-right text-xs font-semibold uppercase tracking-wider text-zinc-400">
                   From
                 </TableHead>
 
-                <TableHead className="h-12 min-w-[190px] text-right text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                <TableHead className="h-12 min-w-[170px] text-right text-xs font-semibold uppercase tracking-wider text-zinc-400">
                   To
                 </TableHead>
 

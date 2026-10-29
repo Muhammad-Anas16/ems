@@ -1,8 +1,6 @@
 import { networkInterfaces } from "node:os";
 
-const PORT = process.env.PORT || 5000;
-
-const getLanIp = () => {
+const getLanIp = (PORT) => {
   const interfaces = networkInterfaces();
 
   const getIPv4 = (name) =>

@@ -62,7 +62,7 @@ app.use((error, req, res, next) => {
 });
 
 const server = app.listen(PORT, "0.0.0.0", () => {
-  const addresses = getLanIp();
+  const addresses = getLanIp(PORT);
 
   console.log("EMS dashboard is running:");
 
