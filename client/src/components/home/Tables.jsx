@@ -107,6 +107,8 @@ const ReadingDisplay = ({ value, unit, timestamp, emphasis = false }) => {
 };
 
 const DataTables = ({ tableData = [] }) => {
+  // console.log(tableData)
+  
   const [currentPage, setCurrentPage] = useState(1);
 
   const validData = useMemo(() => {
