@@ -57,3 +57,20 @@ export const getEnergyLogDataValues = async (
 
   return res.data;
 };
+
+export const getTrendLogDataValues = async (
+  instances,
+  startDate,
+  startTime,
+  // endTime = "23:59",
+) => {
+  const res = await create.post("/aurora/trendlog-data", {
+    instances,
+    startDate,
+    endDate: startDate,
+    startTime,
+    endTime: startTime,
+  });
+
+  return res.data;
+};
