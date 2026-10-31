@@ -14,7 +14,7 @@ const createTables = () => {
     INSERT OR IGNORE INTO configurationAddress (id, ip)
     VALUES (1, ?)
   `,
-  ).run("192.168.1.20");
+  ).run("192.168.20.240");
 };
 
 export default createTables;

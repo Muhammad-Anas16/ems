@@ -1,20 +1,18 @@
 import "dotenv/config";
 import express from "express";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import cors from "cors";
 
 import db from "./src/db/config.js";
 import RunTable from "./src/db/runTable.js";
 import routes from "./src/route/index.js";
 import getLanIp from "./src/utlitis/getLanIp.js";
+import { PUBLIC_DIR } from "./src/utlitis/appPaths.js";
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 
-const currentFile = fileURLToPath(import.meta.url);
-const currentDir = path.dirname(currentFile);
-const publicDir = path.join(currentDir, "public");
+const publicDir = PUBLIC_DIR;
 
 app.use(cors());
 app.use(express.json());

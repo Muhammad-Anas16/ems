@@ -53,3 +53,7 @@ Desktop.ini
 # Debugging
 .npm/
 .eslintcache
+
+# EXE build
+build-exe/.tools/
+build-exe/.work/

@@ -1,17 +1,17 @@
 import Database from "better-sqlite3";
 import { mkdirSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { DATABASE_DIR, SQLITE_ADDON } from "../utlitis/appPaths.js";
 
-const currentFile = fileURLToPath(import.meta.url);
-const currentDir = path.dirname(currentFile);
-
-const databaseDir = path.resolve(currentDir, "../../database");
+const databaseDir = DATABASE_DIR;
 const databasePath = path.join(databaseDir, "database.db");
 
 mkdirSync(databaseDir, { recursive: true });
 
-const db = new Database(databasePath);
+const db = new Database(
+  databasePath,
+  SQLITE_ADDON ? { nativeBinding: SQLITE_ADDON } : undefined,
+);
 
 db.pragma("journal_mode = WAL");
 db.pragma("foreign_keys = ON");

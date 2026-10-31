@@ -57,7 +57,7 @@ const DashboardPage = () => {
     <main className="min-h-screen space-y-6 bg-black p-4 text-white sm:p-6">
       <HeroSection onApply={handleApply} filterLoad={loading} />
 
-      <DataTable data={tableData} />
+      <DataTable data={tableData} loading={loading} />
     </main>
   );
 };

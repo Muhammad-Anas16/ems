@@ -37,6 +37,18 @@ const formatLabel = (value) =>
     .replaceAll("_", " ")
     .replace(/\b\w/g, (character) => character.toUpperCase());
 
+const isFiveMinuteInterval = (value) => {
+  if (!value) return true;
+
+  const match = /^([01]\d|2[0-3]):([0-5]\d)$/.exec(value);
+
+  if (!match) return false;
+
+  const minutes = Number(match[2]);
+
+  return minutes % 5 === 0;
+};
+
 const HeroSection = ({ onApply, filterLoad }) => {
   const meters = useMemo(() => {
     const data = getStructuredData();
@@ -101,6 +113,18 @@ const HeroSection = ({ onApply, filterLoad }) => {
       shouldDirty: true,
     });
   };
+
+  const startTimeRegister = register("fromTime", {
+    validate: (value) =>
+      isFiveMinuteInterval(value) ||
+      "Please select minutes in 5-minute intervals.",
+  });
+
+  const endTimeRegister = register("toTime", {
+    validate: (value) =>
+      isFiveMinuteInterval(value) ||
+      "Please select minutes in 5-minute intervals.",
+  });
 
   const submit = (formValues) => {
     const startDateTime = new Date(
@@ -187,7 +211,8 @@ const HeroSection = ({ onApply, filterLoad }) => {
                 <input
                   id="start-time"
                   type="time"
-                  {...register("fromTime")}
+                  step={300}
+                  {...startTimeRegister}
                   aria-invalid={Boolean(errors.fromTime)}
                   className={inputClass}
                 />
@@ -217,7 +242,8 @@ const HeroSection = ({ onApply, filterLoad }) => {
                 <input
                   id="end-time"
                   type="time"
-                  {...register("toTime")}
+                  step={300}
+                  {...endTimeRegister}
                   aria-invalid={Boolean(errors.toTime)}
                   className={inputClass}
                 />

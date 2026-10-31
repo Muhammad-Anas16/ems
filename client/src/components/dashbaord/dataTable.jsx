@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 
 import {
   Table,
@@ -11,7 +11,9 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 
-const DataTable = ({ data }) => {
+const DataTable = ({ data, loading }) => {
+  const [displayData, setDisplayData] = useState([]);
+
   const tableData = useMemo(() => {
     if (!data || !Array.isArray(data.from) || !Array.isArray(data.to)) {
       return [];
@@ -51,6 +53,13 @@ const DataTable = ({ data }) => {
     });
   }, [data]);
 
+  // Data change hone par local state update hogi
+  useEffect(() => {
+    if (!loading) {
+      setDisplayData(tableData);
+    }
+  }, [tableData, loading]);
+
   const formatValue = (value) => {
     return Number(value).toLocaleString("en-US", {
       maximumFractionDigits: 3,
@@ -70,7 +79,7 @@ const DataTable = ({ data }) => {
             Meter Comparison
           </h2>
 
-          <p className="mt-1 text-sm text-zinc-400">
+          <p className="mt-2 text-sm text-zinc-400">
             Compare meter readings between selected dates and times.
           </p>
         </div>
@@ -128,8 +137,20 @@ const DataTable = ({ data }) => {
           </TableHeader>
 
           <TableBody>
-            {tableData.length > 0 ? (
-              tableData.map((item) => (
+            {loading ? (
+              <TableRow className="border-white/10 hover:bg-transparent">
+                <TableCell
+                  colSpan={7}
+                  className="h-32 text-center text-sm text-zinc-400"
+                >
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="h-5 w-5 animate-spin rounded-full border-2 border-zinc-600 border-t-white" />
+                    Loading meter readings...
+                  </div>
+                </TableCell>
+              </TableRow>
+            ) : displayData.length > 0 ? (
+              displayData.map((item) => (
                 <TableRow
                   key={item.instance}
                   className="border-white/[0.07] transition-colors hover:bg-white/[0.03]"
@@ -140,7 +161,6 @@ const DataTable = ({ data }) => {
 
                   <TableCell>
                     <div className="font-medium text-zinc-200">
-                      {/* {item.name} */}
                       {item.name.split(" - ")[0]}
                     </div>
 
@@ -197,7 +217,8 @@ const DataTable = ({ data }) => {
       {/* Footer */}
       <div className="flex flex-col gap-2 border-t border-white/[0.08] px-5 py-4 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
         <span>
-          Showing {tableData.length} meter{tableData.length !== 1 ? "s" : ""}
+          Showing {loading ? 0 : displayData.length} meter
+          {displayData.length !== 1 ? "s" : ""}
         </span>
 
         <span>Matched using meter instance IDs</span>
